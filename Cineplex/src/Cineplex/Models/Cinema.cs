@@ -7,7 +7,6 @@ namespace Cineplex.Models
     {
         public Cinema()
         {
-            CinemaMovie = new HashSet<CinemaMovie>();
             Session = new HashSet<Session>();
         }
 
@@ -17,7 +16,6 @@ namespace Cineplex.Models
         public string LongDescription { get; set; }
         public string ImageUrl { get; set; }
 
-        public virtual ICollection<CinemaMovie> CinemaMovie { get; set; }
         public virtual ICollection<Session> Session { get; set; }
     }
 }

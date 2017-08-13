@@ -9,22 +9,23 @@ using Cineplex.Models;
 
 namespace Cineplex.Controllers
 {
-    public class MoviesController : Controller
+    public class MovieSessionsController : Controller
     {
         private readonly CineplexContext _context;
 
-        public MoviesController(CineplexContext context)
+        public MovieSessionsController(CineplexContext context)
         {
             _context = context;    
         }
 
-        // GET: Movies
+        // GET: MovieSessions
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movie.ToListAsync());
+            var cineplexContext = _context.Session.Include(s => s.Cinema).Include(s => s.Movie);
+            return View(await cineplexContext.ToListAsync());
         }
 
-        // GET: Movies/Details/5
+        // GET: MovieSessions/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,38 +33,42 @@ namespace Cineplex.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie.SingleOrDefaultAsync(m => m.MovieId == id);
-            if (movie == null)
+            var session = await _context.Session.SingleOrDefaultAsync(m => m.SessionId == id);
+            if (session == null)
             {
                 return NotFound();
             }
 
-            return View(movie);
+            return View(session);
         }
 
-        // GET: Movies/Create
+        // GET: MovieSessions/Create
         public IActionResult Create()
         {
+            ViewData["CinemaId"] = new SelectList(_context.Cinema, "CinemaId", "Location");
+            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "LongDescription");
             return View();
         }
 
-        // POST: Movies/Create
+        // POST: MovieSessions/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MovieId,ComingSoon,ImageUrl,LongDescription,ShortDescription,Title")] Movie movie)
+        public async Task<IActionResult> Create([Bind("SessionId,CinemaId,MovieId,SessionDate")] Session session)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(movie);
+                _context.Add(session);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(movie);
+            ViewData["CinemaId"] = new SelectList(_context.Cinema, "CinemaId", "Location", session.CinemaId);
+            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "LongDescription", session.MovieId);
+            return View(session);
         }
 
-        // GET: Movies/Edit/5
+        // GET: MovieSessions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -71,22 +76,24 @@ namespace Cineplex.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie.SingleOrDefaultAsync(m => m.MovieId == id);
-            if (movie == null)
+            var session = await _context.Session.SingleOrDefaultAsync(m => m.SessionId == id);
+            if (session == null)
             {
                 return NotFound();
             }
-            return View(movie);
+            ViewData["CinemaId"] = new SelectList(_context.Cinema, "CinemaId", "Location", session.CinemaId);
+            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "LongDescription", session.MovieId);
+            return View(session);
         }
 
-        // POST: Movies/Edit/5
+        // POST: MovieSessions/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("MovieId,ComingSoon,ImageUrl,LongDescription,ShortDescription,Title")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("SessionId,CinemaId,MovieId,SessionDate")] Session session)
         {
-            if (id != movie.MovieId)
+            if (id != session.SessionId)
             {
                 return NotFound();
             }
@@ -95,12 +102,12 @@ namespace Cineplex.Controllers
             {
                 try
                 {
-                    _context.Update(movie);
+                    _context.Update(session);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MovieExists(movie.MovieId))
+                    if (!SessionExists(session.SessionId))
                     {
                         return NotFound();
                     }
@@ -111,10 +118,12 @@ namespace Cineplex.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(movie);
+            ViewData["CinemaId"] = new SelectList(_context.Cinema, "CinemaId", "Location", session.CinemaId);
+            ViewData["MovieId"] = new SelectList(_context.Movie, "MovieId", "LongDescription", session.MovieId);
+            return View(session);
         }
 
-        // GET: Movies/Delete/5
+        // GET: MovieSessions/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -122,29 +131,29 @@ namespace Cineplex.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie.SingleOrDefaultAsync(m => m.MovieId == id);
-            if (movie == null)
+            var session = await _context.Session.SingleOrDefaultAsync(m => m.SessionId == id);
+            if (session == null)
             {
                 return NotFound();
             }
 
-            return View(movie);
+            return View(session);
         }
 
-        // POST: Movies/Delete/5
+        // POST: MovieSessions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var movie = await _context.Movie.SingleOrDefaultAsync(m => m.MovieId == id);
-            _context.Movie.Remove(movie);
+            var session = await _context.Session.SingleOrDefaultAsync(m => m.SessionId == id);
+            _context.Session.Remove(session);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        private bool MovieExists(int id)
+        private bool SessionExists(int id)
         {
-            return _context.Movie.Any(e => e.MovieId == id);
+            return _context.Session.Any(e => e.SessionId == id);
         }
     }
 }

@@ -12,6 +12,14 @@
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input asp-for="ComingSoon" />
+                    <label asp-for="ComingSoon"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
             <label asp-for="ImageUrl" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="ImageUrl" class="form-control" />
@@ -23,13 +31,6 @@
             <div class="col-md-10">
                 <input asp-for="LongDescription" class="form-control" />
                 <span asp-validation-for="LongDescription" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Price" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger" />
             </div>
         </div>
         <div class="form-group">

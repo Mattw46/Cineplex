@@ -9,10 +9,8 @@ namespace Cineplex.Models
         public virtual DbSet<BookedSeats> BookedSeats { get; set; }
         public virtual DbSet<Booking> Booking { get; set; }
         public virtual DbSet<Cinema> Cinema { get; set; }
-        public virtual DbSet<CinemaMovie> CinemaMovie { get; set; }
         public virtual DbSet<Enquiry> Enquiry { get; set; }
         public virtual DbSet<Movie> Movie { get; set; }
-        public virtual DbSet<MovieComingSoon> MovieComingSoon { get; set; }
         public virtual DbSet<Session> Session { get; set; }
 
         public CineplexContext(DbContextOptions<CineplexContext> options) : base(options)
@@ -31,7 +29,7 @@ namespace Cineplex.Models
             modelBuilder.Entity<BookedSeats>(entity =>
             {
                 entity.HasKey(e => new { e.SessionId, e.SeatNumber })
-                    .HasName("PK__BookedSe__D7164EC046D2C656");
+                    .HasName("PK__BookedSe__D7164EC0BE453BDF");
 
                 entity.Property(e => e.SessionId).HasColumnName("SessionID");
 
@@ -39,7 +37,7 @@ namespace Cineplex.Models
                     .WithMany(p => p.BookedSeats)
                     .HasForeignKey(d => d.SessionId)
                     .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK__BookedSea__Sessi__37A5467C");
+                    .HasConstraintName("FK__BookedSea__Sessi__300424B4");
             });
 
             modelBuilder.Entity<Booking>(entity =>
@@ -54,7 +52,7 @@ namespace Cineplex.Models
                     .WithMany(p => p.Booking)
                     .HasForeignKey(d => d.SessionId)
                     .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK__Booking__Session__32E0915F");
+                    .HasConstraintName("FK__Booking__Session__2D27B809");
             });
 
             modelBuilder.Entity<Cinema>(entity =>
@@ -66,28 +64,6 @@ namespace Cineplex.Models
                 entity.Property(e => e.LongDescription).IsRequired();
 
                 entity.Property(e => e.ShortDescription).IsRequired();
-            });
-
-            modelBuilder.Entity<CinemaMovie>(entity =>
-            {
-                entity.HasKey(e => new { e.CinemaId, e.MovieId })
-                    .HasName("PK__CinemaMo__ED740F653313A91B");
-
-                entity.Property(e => e.CinemaId).HasColumnName("CinemaID");
-
-                entity.Property(e => e.MovieId).HasColumnName("MovieID");
-
-                entity.HasOne(d => d.Cinema)
-                    .WithMany(p => p.CinemaMovie)
-                    .HasForeignKey(d => d.CinemaId)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK__CinemaMov__Cinem__2B3F6F97");
-
-                entity.HasOne(d => d.Movie)
-                    .WithMany(p => p.CinemaMovie)
-                    .HasForeignKey(d => d.MovieId)
-                    .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK__CinemaMov__Movie__2C3393D0");
             });
 
             modelBuilder.Entity<Enquiry>(entity =>
@@ -102,19 +78,6 @@ namespace Cineplex.Models
             modelBuilder.Entity<Movie>(entity =>
             {
                 entity.Property(e => e.MovieId).HasColumnName("MovieID");
-
-                entity.Property(e => e.LongDescription).IsRequired();
-
-                entity.Property(e => e.Price).HasColumnType("money");
-
-                entity.Property(e => e.ShortDescription).IsRequired();
-
-                entity.Property(e => e.Title).IsRequired();
-            });
-
-            modelBuilder.Entity<MovieComingSoon>(entity =>
-            {
-                entity.Property(e => e.MovieComingSoonId).HasColumnName("MovieComingSoonID");
 
                 entity.Property(e => e.LongDescription).IsRequired();
 
@@ -137,13 +100,13 @@ namespace Cineplex.Models
                     .WithMany(p => p.Session)
                     .HasForeignKey(d => d.CinemaId)
                     .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK__Session__CinemaI__2F10007B");
+                    .HasConstraintName("FK__Session__CinemaI__29572725");
 
                 entity.HasOne(d => d.Movie)
                     .WithMany(p => p.Session)
                     .HasForeignKey(d => d.MovieId)
                     .OnDelete(DeleteBehavior.Restrict)
-                    .HasConstraintName("FK__Session__MovieID__300424B4");
+                    .HasConstraintName("FK__Session__MovieID__2A4B4B5E");
             });
         }
     }
