@@ -12,9 +12,9 @@
 <table class="table">
     <thead>
         <tr>
-            <th>
+            <!--<th>
                 @Html.DisplayNameFor(model => model.ComingSoon)
-            </th>
+            </th>-->
             <th>
                 @Html.DisplayNameFor(model => model.ImageUrl)
             </th>
@@ -32,10 +32,12 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
+    if (!item.ComingSoon)
+    { 
         <tr>
-            <td>
+            <!--<td>
                 @Html.DisplayFor(modelItem => item.ComingSoon)
-            </td>
+            </td>-->
             <td>
                 @Html.DisplayFor(modelItem => item.ImageUrl)
             </td>
@@ -48,12 +50,67 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
-            <td>
+            <!--<td>
                 <a asp-action="Edit" asp-route-id="@item.MovieId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.MovieId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.MovieId">Delete</a>
-            </td>
+            </td>-->
         </tr>
+    }
 }
+    </tbody>
+</table>
+
+<h3>Coming Soon</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <!--<th>
+                @Html.DisplayNameFor(model => model.ComingSoon)
+            </th>-->
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LongDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShortDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.ComingSoon)
+            {
+                <tr>
+                    <!--<td>
+                        @Html.DisplayFor(modelItem => item.ComingSoon)
+                    </td>-->
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImageUrl)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LongDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShortDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <!--<td>
+                        <a asp-action="Edit" asp-route-id="@item.MovieId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.MovieId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.MovieId">Delete</a>
+                    </td>-->
+                </tr>
+            }
+        }
     </tbody>
 </table>
