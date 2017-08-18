@@ -21,7 +21,10 @@ namespace Cineplex.Controllers
         // GET: MovieSessions
         public async Task<IActionResult> Index()
         {
-            var cineplexContext = _context.Session.Include(s => s.Cinema).Include(s => s.Movie);
+            /*var cineplexContext = _context.Session.Include(s => s.Cinema).Include(s => s.Movie);
+            return View(await cineplexContext.ToListAsync());*/
+
+            var cineplexContext = _context.Session.Include(s => s.Cinema).Include(s => s.Movie).AsNoTracking();
             return View(await cineplexContext.ToListAsync());
         }
 
