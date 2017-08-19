@@ -12,6 +12,21 @@
     Complimentary popcorn and beverages are include. additional food and beverages can be added at extra cost.</p>
 
 <p>Fill out the form below to enquire about booking an event ot coporate packages on offer.</p>
+
+<div style="height: 20px;"></div>
+
+<form asp-controller="Enquires" asp-action="Index" method="get">
+    <p>
+        Name: <input type="text" name="nameString"
+                      value="@ViewData["name"]" />
+        Email: <input type="text" name="emailString"
+                      value="@ViewData["email"]" />
+        Request Details: <input type="text" name="detailsString"
+                      value="@ViewData["details"]" />
+        <input type="submit" value="Submit" />
+    </p>
+</form>
+<div style="height: 100px;"></div>
 <!--<p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -19,27 +34,27 @@
     <thead>
         <tr>
             <th>
-                @*@Html.DisplayNameFor(model => model.Email)*
+                @*@Html.DisplayNameFor(model => model.Email)*@
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Message)
+                @*@Html.DisplayNameFor(model => model.Message)*@
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@*foreach (var item in Model) {*@
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Email)
+                @*Html.DisplayFor(modelItem => item.Email)*@
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Message)
+                @*Html.DisplayFor(modelItem => item.Message)*@
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.EnquiryId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EnquiryId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EnquiryId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@*item.EnquiryId*@">Edit</a> |
+                <a asp-action="Details" asp-route-id="@*item.EnquiryId*@">Details</a> |
+                <a asp-action="Delete" asp-route-id="@*item.EnquiryId*@">Delete</a>
             </td>
         </tr>
 }
