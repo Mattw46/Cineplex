@@ -6,6 +6,16 @@
 
 <h2>Sessions</h2>
 
+<form asp-controller="MovieSessions" asp-action="Index" method="get">
+    <p>
+        Title: <input type="text" name="movieString"
+                      value="@ViewData["movieFilter"]" />
+        Cinema: <input type="text" name="cinemaString"
+                      value="@ViewData["cinemaFilter"]" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
 <table class="table">
     <thead>
         <tr>
@@ -35,7 +45,7 @@
                     @Html.DisplayFor(modelItem => item.SessionDate)
                 </td>
                 <td>
-                    <a href="http://localhost:52729/Bookings/@Html.DisplayFor(modelItem => item.SessionId)">Book</a>
+                    <a href="http://localhost:52729/Bookings/@Html.DisplayFor(modelItem => item.SessionId)">Select</a>
                 </td>
             </tr>
         }
