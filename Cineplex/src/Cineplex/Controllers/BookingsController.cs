@@ -19,10 +19,12 @@ namespace Cineplex.Controllers
         }
 
         // GET: Bookings
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? id)
         {
-            var cineplexContext = _context.Booking.Include(b => b.Session);
-            return View(await cineplexContext.ToListAsync());
+            //var cineplexContext = _context.Booking.Include(b => b.Session);
+            //return View(await cineplexContext.ToListAsync());
+            var seats = await _context.BookedSeats.SingleOrDefaultAsync(m => m.SessionId == id);
+            return View(seats);
         }
 
         // GET: Bookings/Details/5
@@ -39,6 +41,7 @@ namespace Cineplex.Controllers
                 return NotFound();
             }
 
+            
             return View(booking);
         }
 
