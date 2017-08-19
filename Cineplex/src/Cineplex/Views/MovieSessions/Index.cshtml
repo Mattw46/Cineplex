@@ -1,42 +1,11 @@
 @model IEnumerable<Cineplex.Models.Session>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Movie Sessions";
 }
 
 <h2>Sessions</h2>
 
-<!--<p>
-    <a asp-action="Create">Create New</a>
-</p>-->
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @*@Html.DisplayNameFor(model => model.SessionDate)*@
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @*@foreach (var item in Model) {*@
-        <tr>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.SessionDate)*@
-            </td>
-            <!--<td>
-                <a asp-action="Edit" asp-route-id="@*@item.SessionId*@">Edit</a> |
-                <a asp-action="Details" asp-route-id="@*@item.SessionId*@">Details</a> |
-                <a asp-action="Delete" asp-route-id="@*@item.SessionId*@">Delete</a>
-            </td>-->
-        </tr>
-        <!--}-->
-
-
-    </tbody>
-</table>
-
-<!-- testing from here -->
 <table class="table">
     <thead>
         <tr>
@@ -50,8 +19,11 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td width="20px">
-                    @Html.DisplayFor(modelItem => item.Cinema.CinemaId)
+                <!--<td width="20px">
+                    
+                </td>-->
+                <td>
+                    <img src="@Url.Content(item.Movie.ImageUrl)" />
                 </td>
                 <td width="80px">
                     @Html.DisplayFor(modelItem => item.Cinema.Location)
@@ -69,3 +41,5 @@
         }
     </tbody>
 </table>
+
+@*@Html.DisplayFor(modelItem => item.Cinema.CinemaId)*@

@@ -1,10 +1,10 @@
 @model IEnumerable<Cineplex.Models.Enquiry>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Enquires";
 }
 
-<h2>Enquires</h2>
+<h2>Enquires</h2> <!-- https://docs.microsoft.com/en-us/aspnet/core/mvc/views/working-with-forms -->
 
 <p>Cineplex runs special events from time to time.</p>
 
@@ -19,7 +19,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                @*@Html.DisplayNameFor(model => model.Email)*
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Message)

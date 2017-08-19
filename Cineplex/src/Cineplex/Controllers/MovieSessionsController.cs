@@ -29,7 +29,7 @@ namespace Cineplex.Controllers
         }
 
         // GET: MovieSessions/Details/5
-        public async Task<IActionResult> Details(int? id)
+        /*public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -157,6 +157,6 @@ namespace Cineplex.Controllers
         private bool SessionExists(int id)
         {
             return _context.Session.Any(e => e.SessionId == id);
-        }
+        }*/
     }
 }

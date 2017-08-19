@@ -20,13 +20,13 @@
                 @Html.DisplayNameFor(model => model.ImageUrl)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LongDescription)
+                @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ShortDescription)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.LongDescription)
             </th>
             <th></th>
         </tr>
@@ -38,24 +38,22 @@
         <tr>
             <!--<td>
                 @Html.DisplayFor(modelItem => item.ComingSoon)
-            </td>-->
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LongDescription)
+                @Html.DisplayFor(modelItem => item.ImageUrl)
+            </td>-->
+            <td>
+                <img src="@Url.Content(item.ImageUrl)" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ShortDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.DisplayFor(modelItem => item.LongDescription)
             </td>
-            <!--<td>
-                <a asp-action="Edit" asp-route-id="@item.MovieId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MovieId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MovieId">Delete</a>
-            </td>-->
         </tr>
     }
 }
@@ -73,13 +71,13 @@
                 @Html.DisplayNameFor(model => model.ImageUrl)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.LongDescription)
+                @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ShortDescription)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.LongDescription)
             </th>
             <th></th>
         </tr>
@@ -94,22 +92,17 @@
                         @Html.DisplayFor(modelItem => item.ComingSoon)
                     </td>-->
                     <td>
-                        @Html.DisplayFor(modelItem => item.ImageUrl)
+                        <img src="@Url.Content(item.ImageUrl)" />
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.LongDescription)
+                        @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.ShortDescription)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Title)
+                        @Html.DisplayFor(modelItem => item.LongDescription)
                     </td>
-                    <!--<td>
-                        <a asp-action="Edit" asp-route-id="@item.MovieId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.MovieId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.MovieId">Delete</a>
-                    </td>-->
                 </tr>
             }
         }
