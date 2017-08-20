@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Cineplex.Models.CartItem>
+<p>Cart Here:</p>
+
+@foreach(var item in Model)
+{
+    <p>Cart item: @item.session.SessionId Quantity: @item.quantity.</p>
+}
