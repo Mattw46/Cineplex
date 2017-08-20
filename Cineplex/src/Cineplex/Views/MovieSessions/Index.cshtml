@@ -22,7 +22,18 @@
             <th>
                 @*@Html.DisplayNameFor(model => model.SessionDate)*@
             </th>
-            <th></th>
+            <th>
+                Cinema
+            </th>
+            <th>
+                Movie
+            </th>
+            <th>
+                Session
+            </th>
+            <th>
+                Add to Cart
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -45,7 +56,7 @@
                     @Html.DisplayFor(modelItem => item.SessionDate)
                 </td>
                 <td>
-                    <a href="http://localhost:52729/Bookings/@Html.DisplayFor(modelItem => item.SessionId)">Select</a>
+                    <a href="http://localhost:52729/SeatPicker/?id=@Html.DisplayFor(modelItem => item.SessionId)">Select</a>
                 </td>
             </tr>
         }
