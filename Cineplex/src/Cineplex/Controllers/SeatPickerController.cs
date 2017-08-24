@@ -22,7 +22,8 @@ namespace Cineplex.Controllers
         public async Task<IActionResult> Index(int? id)
         {
             ViewData["id"] = id;
-            var cineplexContext = _context.BookedSeats.Include(b => b.Session);
+            //var cineplexContext = _context.BookedSeats.Include(b => b.Session).Where(s.);
+            var cineplexContext = _context.BookedSeats.Where(b => b.SessionId == id);
             return View(await cineplexContext.ToListAsync());
         }
 
