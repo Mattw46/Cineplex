@@ -4,6 +4,7 @@
     ViewData["Title"] = "Movie Sessions";
 }
 
+
 <h2>Sessions</h2>
 
 <form asp-controller="MovieSessions" asp-action="Index" method="get">
@@ -56,7 +57,25 @@
                     @Html.DisplayFor(modelItem => item.SessionDate)
                 </td>
                 <td>
-                    <a href="http://localhost:52729/SeatPicker/?id=@Html.DisplayFor(modelItem => item.SessionId)">Select</a>
+                    <!-- **********************************
+                           see week 8 exercise 3
+                         ********************************** -->
+
+                    <!--<form asp-action="AddToCart">
+                        <input type="button" value="SaveToCart" />
+                    </form>-->
+                    <!--<a href="http://localhost:52729/SeatPicker/?id=">Select</a>-->
+
+                    <form asp-action="AddToCart" method="post">
+                        <select name="seats">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <input type="button" value="SaveToCart" />
+                    </form>
                 </td>
             </tr>
         }
