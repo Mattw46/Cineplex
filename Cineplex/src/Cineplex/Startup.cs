@@ -39,6 +39,9 @@ namespace Cineplex
 
             services.AddMvc();
 
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
             services.AddDbContext<Models.CineplexContext>(options =>
                 options.UseSqlServer(Configuration["Data:CineplexContext:ConnectionString"]));
         }
@@ -64,6 +67,7 @@ namespace Cineplex
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

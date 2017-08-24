@@ -17,6 +17,17 @@
     </p>
 </form>
 
+<!-- testing -->
+<form asp-action="Index">
+    <select asp-action="MovieSessions" name="movie"></select> <!---->
+    <input type="text" name="movie" />
+    <button type="submit">Submit</button>
+</form>
+
+<h4>Session: @ViewData["SessionId"]</h4>
+<h4>Movie: @ViewData["MovieId"]</h4>
+<!-- end testing -->
+
 <table class="table">
     <thead>
         <tr>

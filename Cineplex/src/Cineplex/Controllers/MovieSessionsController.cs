@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Cineplex.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Cineplex.Controllers
 {
@@ -19,12 +20,19 @@ namespace Cineplex.Controllers
         }
 
         // GET: MovieSessions filtered
-        public async Task<IActionResult> Index(string cinemaString, string movieString)
+        public async Task<IActionResult> Index(string cinemaString, string movieString, int sessionID)
         {
             /* I encountered an issue here where I could not declare var session up front
                without assigning a result set. this meant that session was out of scope
                when returning at the end of the method. i had no choice but to duplicate the
                return statement inside each if statement */
+
+            if (sessionID != null)
+            {
+                string i = sessionID.ToString();
+                HttpContext.Session.SetInt32(i, 1);
+                ViewData["SessionId"] = sessionID;
+            }
             
             if (!String.IsNullOrEmpty(cinemaString) && String.IsNullOrEmpty(movieString))
             {
@@ -58,6 +66,19 @@ namespace Cineplex.Controllers
             
         }
 
-        
+        /* testing */
+        //[HttpPost]
+        //public IActionResult Index(int movie)
+        //{
+            
+        //}
     }
 }
+
+//var movieAct = MovieManager.Instance.Movies.First(m => m.ID == movie);
+//HttpContext.Session.SetString("SessionId", "test title");
+            //HttpContext.Session.SetInt32("MovieId", 1);
+            //["MovieId"] = 1;
+            //ViewData["SessionId"] = 2;
+            //return RedirectToAction("Index", "MovieSessions");
+//return View();
